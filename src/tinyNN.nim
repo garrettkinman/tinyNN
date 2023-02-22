@@ -3,5 +3,5 @@
 # but you can remove it if you wish.
 
 # import std/[macros]
-import tinyNN/[tensors]
+import tinyNN / [tensors]
 export tensors

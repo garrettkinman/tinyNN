@@ -1,4 +1,4 @@
-import std/[math, sequtils, random]
+import std / [math, sequtils, random]
 
 type
   Tensor*[T] = ref TensorObj[T]
