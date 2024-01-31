@@ -13,5 +13,5 @@ type
         bias*: Tensor[T]
         activation*: (Tensor[T]) -> void
 
-proc forward*[T](layer: Dense, x: Tensor[T]): Tensor[T] =
-    result = ((layer.weights * x) + layer.bias).activation()
+proc forward*[T](self: Dense, x: Tensor[T]): Tensor[T] =
+    result = ((self.weights * x) + self.bias).activation()
