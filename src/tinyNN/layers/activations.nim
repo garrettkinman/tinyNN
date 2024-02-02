@@ -12,9 +12,10 @@ import ../tensors
 # 3. tanh
 # and more
 
+import .. / constants / [lookup_tables]
+
 func sigmoid(x: uint8): uint8 =
-    # TODO: look-up table
-    result = x
+    result = sigmoid_u8[x]
 
 func sigmoid(x: int8): int8 =
     # TODO: look-up table
