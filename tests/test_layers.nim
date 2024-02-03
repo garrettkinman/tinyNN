@@ -3,6 +3,3 @@
 # This software is released under the MIT License.
 # https://opensource.org/licenses/MIT
 
-import tinyNN / [tensors]
-import tinyNN / layers / [activations, dense]
-export tensors, activations, dense
