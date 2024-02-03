@@ -18,8 +18,7 @@ func sigmoid(x: uint8): uint8 =
     result = sigmoid_u8[x]
 
 func sigmoid(x: int8): int8 =
-    # TODO: look-up table
-    result = x
+    result = sigmoid_i8[x]
 
 func sigmoid(x: float32): float32 =
     result = 1 / (1 + exp(-x))
