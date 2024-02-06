@@ -20,12 +20,13 @@ func sigmoid(x: int8): int8 =
 func sigmoid(x: float32): float32 =
     result = 1 / (1 + exp(-x))
 
-proc sigmoid*[T](tensor: var Tensor[T]): void =
+proc sigmoid*[T](tensor: Tensor[T]): Tensor[T] =
     ## A generic sequential implementation of the sigmoid activation function
+    result = Tensor[T].new(tensor.shape)
     for it in 0..<tensor.len:
         let x: T = tensor.data[it]
         let y: T = sigmoid(x)
-        tensor.data[it] = y
+        result.data[it] = y
 
 func relu(x: int8): int8 =
     if x > 0:
@@ -39,9 +40,10 @@ func relu(x: float32): float32 =
     else:
         result = 0
 
-proc relu*[T](tensor: var Tensor[T]): void =
+proc relu*[T](tensor: Tensor[T]): Tensor[T] =
     ## A generic sequential implementation of the ReLU activation function
+    result = Tensor[T].new(tensor.shape)
     for it in 0..<tensor.len:
         let x: T = tensor.data[it]
         let y: T = relu(x)
-        tensor.data[it] = y
+        result.data[it] = y
