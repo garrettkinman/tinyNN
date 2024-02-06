@@ -11,7 +11,6 @@ Lightweight, performant, and dependency-free neural network inference engine for
 # Planned Features
 - Data types
   - `int8`
-  - `uint8`
   - `float32`
   - More? (TBD)
 - Standard layers

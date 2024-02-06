@@ -14,9 +14,6 @@ import ../tensors
 
 import .. / constants / [lookup_tables]
 
-func sigmoid(x: uint8): uint8 =
-    result = sigmoid_u8[x]
-
 func sigmoid(x: int8): int8 =
     result = sigmoid_i8[x]
 
@@ -29,13 +26,6 @@ proc sigmoid*[T](tensor: var Tensor[T]): void =
         let x: T = tensor.data[it]
         let y: T = sigmoid(x)
         tensor.data[it] = y
-    
-func relu(x: uint8): uint8 =
-    # TODO: figure out how to handle zero-point for uint8 ReLU
-    if x > 127:
-        result = x
-    else:
-        result = 0
 
 func relu(x: int8): int8 =
     if x > 0:
