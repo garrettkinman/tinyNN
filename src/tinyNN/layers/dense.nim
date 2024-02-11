@@ -38,9 +38,8 @@ proc newDense*[T](shape: openArray[int], weights: seq[T], bias: seq[T], activati
     )
 
 proc new*[T](_: typedesc[Dense[T]], shape: openArray[int], slice: HSlice[T, T], activation: (Tensor[T]) -> Tensor[T]): Dense[T] = newDense[T](shape, slice, activation)
-proc new*[T](_: typedesc[Tensor[T]], weights: Tensor[T], bias: Tensor[T], activation: (Tensor[T]) -> Tensor[T]): Dense[T] = newDense(weights, bias, activation)
-proc new*[T](_: typedesc[Tensor[T]], shape: openArray[int], weights: seq[T], bias: seq[T], activation: (Tensor[T]) -> Tensor[T]): Dense[T] = newDense(shape, weights, bias, activation)
-# proc new*[T](_: typedesc[Tensor[T]], shape: openArray[int], value: T): Tensor[T] = newTensor(shape, value)
+proc new*[T](_: typedesc[Dense[T]], weights: Tensor[T], bias: Tensor[T], activation: (Tensor[T]) -> Tensor[T]): Dense[T] = newDense(weights, bias, activation)
+proc new*[T](_: typedesc[Dense[T]], shape: openArray[int], weights: seq[T], bias: seq[T], activation: (Tensor[T]) -> Tensor[T]): Dense[T] = newDense(shape, weights, bias, activation)
 
 proc forward*[T](self: Dense, x: Tensor[T]): Tensor[T] =
-    result = ((self.weights * x) + self.bias).activation()
+    result = self.activation(((self.weights * x) + self.bias))
