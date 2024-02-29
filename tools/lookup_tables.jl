@@ -5,13 +5,18 @@
 
 using Flux.NNlib
 
-function σ(x::Int8)
-    # scale to [-1, 1]
-    x_scaled = (float(x) / 255.0) * 2.0
-    y = NNlib.σ(x_scaled)
-    return round(y * 255 / 2) |> Int8
+function generate_lut(f::Function, scale_in::Float32, zero_point_in::Int8; scale_out::Float32=Float32(1/255), zero_point_out::Int8=Int8(-128))
+    x_quant = Int8.(-128:127)
+    x_dequant = Float32.(Int32.(x_quant) .- Int32(zero_point_in)) .* scale_in
+    y = f.(x_dequant)
+    y_quant = Int32.(round.(y ./ scale_out)) .+ Int32(zero_point_out)
+    lut = Int8.(clamp.((y_quant), -128, 127))
+    return lut
 end
 
-lookup_table_uint8 = σ.(UInt8.(0:255))
-lookup_table_int8 = σ.(Int8.(-128:127))
+lut_σ₁ = generate_lut(NNlib.σ, Float32(0.00392156885968563), Int8(-128))
+lut_σ₂ = generate_lut(NNlib.σ, Float32(1/255), Int8(-128))
+
+lut_exp₁ = generate_lut(NNlib.exp, Float32(0.00392156885968563), Int8(-128))
+lut_exp₂ = generate_lut(NNlib.exp, Float32(1/255), Int8(-128))
 

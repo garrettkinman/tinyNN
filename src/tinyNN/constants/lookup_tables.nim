@@ -25,3 +25,5 @@ const
         87, 87, 87, 87, 88, 88, 88, 88, 88, 89, 89, 89, 89, 89, 90, 90,
         90, 90, 90, 91, 91, 91, 91, 92, 92, 92, 92, 92, 93, 93, 93, 93
     ] # naive implementation until I understand 8-bit quantized activation functions better
+
+    exp_i8*: Int8Array = [ 0.int8]
