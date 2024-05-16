@@ -4,5 +4,5 @@
 # https://opensource.org/licenses/MIT
 
 import tinyNN / [tensors, model]
-import tinyNN / layers / [activations, dense]
-export tensors, model, activations, dense
+import tinyNN / layers / [activations, dense, softmax]
+export tensors, model, activations, dense, softmax

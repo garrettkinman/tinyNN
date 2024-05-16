@@ -17,3 +17,8 @@ test "sigmoid":
 test "relu":
     check a.relu() == Tensor.new([2, 3], @[float32 0, 0, 0, 1, 2, 3])
     check b.relu() == Tensor.new([2, 2], @[int8 0, 0, 1, 127])
+
+test "softmax":
+    # TODO: Add approx equals for float32
+    check a.softmax() == Tensor.new([2, 3], @[float32 0.001619308721274137, 0.004401737824082375, 0.01196516398340464, 0.08841126412153244, 0.2403267323970795, 0.6532757878303528])
+    # check b.softmax() == Tensor.new([2, 2], @[int8 0, 0, 0, 127])

@@ -31,7 +31,10 @@ proc softmax*(tensor: Tensor[int8]): Tensor[int8] =
     # TODO: Implement quantized softmax
     result = Tensor[int8].new(tensor.shape)
 
+# TODO: Add dims parameter?
 proc softmax*(tensor: Tensor[float32]): Tensor[float32] =
-    result = exp(tensor)
+    result = Tensor[float32].new(tensor.shape)
+    let temp: Tensor[float32] = exp(tensor)
+    let temp_sum: float32 = temp.sum()
     for it in 0..<tensor.len:
-        result.data[it] = result.data[it] / result.sum()
+        result.data[it] = temp.data[it] / temp_sum
