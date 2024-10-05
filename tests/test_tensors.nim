@@ -12,6 +12,7 @@ let
     c = Tensor.new([2, 2], @[int 22, 28, 49, 64])
     d = Tensor.new([2, 2], @[int 1, 2, 3, 4])
     e = Tensor.new([1, 2, 3], @[int 1, 2, 3, 4, 5, 6])
+    f = Tensor.new([2, 3], @[float32 1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
 
 test "constructors":
     check a == newTensor([2, 3], @[int 1, 2, 3, 4, 5, 6])
@@ -32,6 +33,7 @@ test "equality":
     check c.shape != a.shape
     check a.shape != b.shape
     check a.shape == b.transpose().shape
+    check f.approxEquals(f, 0.0001)
 
 test "stringify":
     check $a == "[[1, 2, 3], [4, 5, 6]]"

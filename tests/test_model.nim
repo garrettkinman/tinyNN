@@ -8,11 +8,11 @@ import tinyNN
 
 type
     SingleLayerPerceptronModel[T] = object
-        dense: Dense[int8]
+        dense: Dense[float32]
 
     MultiLayerPerceptronModel[T] = object
-        dense1: Dense[int8]
-        dense2: Dense[int8]
+        dense1: Dense[float32]
+        dense2: Dense[float32]
 
 proc forward[T](model: SingleLayerPerceptronModel[T], x: Tensor[T]): Tensor[T] =
     result = model.dense.forward(x)
@@ -21,26 +21,26 @@ proc forward[T](model: MultiLayerPerceptronModel[T], x: Tensor[T]): Tensor[T] =
     result = model.dense2.forward(model.dense1.forward(x))
 
 let
-    slp = SingleLayerPerceptronModel[int8](
-        dense: Dense[int8].new(
+    slp = SingleLayerPerceptronModel[float32](
+        dense: Dense[float32].new(
             [1, 3],
-            (1.int8)..(1.int8),
+            (1.float32)..(1.float32),
             relu
         )
     )
-    mlp = MultiLayerPerceptronModel[int8](
-        dense1: Dense[int8].new(
+    mlp = MultiLayerPerceptronModel[float32](
+        dense1: Dense[float32].new(
             [3, 3],
-            (1.int8)..(1.int8),
+            (1.float32)..(1.float32),
             relu
         ),
-        dense2: Dense[int8].new(
+        dense2: Dense[float32].new(
             [1, 3],
-            (1.int8)..(1.int8),
+            (1.float32)..(1.float32),
             relu
         )
     )
 
 test "singleLayerPerceptron":
-    echo slp.forward(Tensor.new([3, 1], @[int8 1, 2, 3]))
-    echo mlp.forward(Tensor.new([3, 1], @[int8 1, 2, 3]))
+    echo slp.forward(Tensor.new([3, 1], @[float32 1, 2, 3]))
+    echo mlp.forward(Tensor.new([3, 1], @[float32 1, 2, 3]))

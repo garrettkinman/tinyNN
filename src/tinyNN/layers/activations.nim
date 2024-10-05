@@ -12,8 +12,6 @@ import ../tensors
 # 3. tanh
 # and more
 
-import .. / constants / [lookup_tables]
-
 func sigmoid(x: float32): float32 =
     result = 1 / (1 + exp(-x))
 
