@@ -84,12 +84,12 @@ proc clone*[T](tensor: Tensor[T]): Tensor[T] =
 proc dataPtr*[T](tensor: Tensor[T]): ptr UncheckedArray[T] {.inline.} = tensor.data
 
 proc approxEquals*[T](a, b: Tensor[T]; tol: T): bool =
-  if a.len != b.len or a.shape != b.shape:
-    return false
-  for i in 0..<a.len:
-    if abs(a.data[i] - b.data[i]) > tol:
-      return false
-  return true
+    if a.len != b.len or a.shape != b.shape:
+        return false
+    for i in 0..<a.len:
+        if abs(a.data[i] - b.data[i]) > tol:
+            return false
+    return true
 
 proc `==`*[T](a, b: Tensor[T]): bool =
     if a.len == b.len and a.shape == b.shape:
