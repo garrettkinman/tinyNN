@@ -12,11 +12,6 @@ import ../tensors
 # 3. tanh
 # and more
 
-import .. / constants / [lookup_tables]
-
-func sigmoid(x: int8): int8 =
-    result = sigmoid_i8[x]
-
 func sigmoid(x: float32): float32 =
     result = 1 / (1 + exp(-x))
 
@@ -27,12 +22,6 @@ proc sigmoid*[T](tensor: Tensor[T]): Tensor[T] =
         let x: T = tensor.data[it]
         let y: T = sigmoid(x)
         result.data[it] = y
-
-func relu(x: int8): int8 =
-    if x > 0:
-        result = x
-    else:
-        result = 0
 
 func relu(x: float32): float32 =
     if x > 0:

@@ -7,36 +7,36 @@ import unittest
 import tinyNN
 
 let
-    a = Dense[int8].new([2, 3], (1.int8)..(1.int8), relu)
-    b = Dense[int8].new(
-        Tensor.new([2, 2], @[int8 1, 0, 0, 1]),
-        Tensor.new([2, 1], @[int8 0, 0]),
+    a = Dense[float32].new([2, 3], (1.float32)..(1.float32), relu)
+    b = Dense[float32].new(
+        Tensor.new([2, 2], @[float32 1, 0, 0, 1]),
+        Tensor.new([2, 1], @[float32 0, 0]),
         relu
     )
-    c = Dense[int8].new(
+    c = Dense[float32].new(
         [2, 2],
-        @[int8 1, 0, 0, 1],
-        @[int8 0, 0],
+        @[float32 1, 0, 0, 1],
+        @[float32 0, 0],
         relu
     )
 
 test "dense":
-    check a == Dense[int8].new(
+    check a == Dense[float32].new(
         [2, 3],
-        (1.int8)..(1.int8),
+        (1.float32)..(1.float32),
         relu
     )
-    check a.forward(Tensor.new([3, 1], @[int8 -1, 0, 1])) == Tensor.new([2, 1], @[int8 1, 1])
-    check b == Dense[int8].new(
-        Tensor.new([2, 2], @[int8 1, 0, 0, 1]),
-        Tensor.new([2, 1], @[int8 0, 0]),
+    check a.forward(Tensor.new([3, 1], @[float32 -1, 0, 1])) == Tensor.new([2, 1], @[float32 1, 1])
+    check b == Dense[float32].new(
+        Tensor.new([2, 2], @[float32 1, 0, 0, 1]),
+        Tensor.new([2, 1], @[float32 0, 0]),
         relu
     )
-    check b.forward(Tensor.new([2, 1], @[int8 1, 1])) == Tensor.new([2, 1], @[int8 1, 1])
-    check c == Dense[int8].new(
+    check b.forward(Tensor.new([2, 1], @[float32 1, 1])) == Tensor.new([2, 1], @[float32 1, 1])
+    check c == Dense[float32].new(
         [2, 2],
-        @[int8 1, 0, 0, 1],
-        @[int8 0, 0],
+        @[float32 1, 0, 0, 1],
+        @[float32 0, 0],
         relu
     )
-    check c.forward(Tensor.new([2, 1], @[int8 1, 1])) == Tensor.new([2, 1], @[int8 1, 1])
+    check c.forward(Tensor.new([2, 1], @[float32 1, 1])) == Tensor.new([2, 1], @[float32 1, 1])

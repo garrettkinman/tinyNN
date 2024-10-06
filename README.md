@@ -13,6 +13,10 @@ Lightweight, performant, and dependency-free neural network inference engine for
   - `int8`
   - `float32`
   - More? (TBD)
+- Tensor types
+  - Regular (dynamically allocated)
+  - Sparse
+  - Statically allocated? (TBD)
 - Standard layers
   - Dense
   - Conv, DepthwiseConv
