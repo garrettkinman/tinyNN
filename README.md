@@ -19,7 +19,7 @@ Lightweight, performant, and dependency-free neural network inference engine for
   - Statically allocated? (TBD)
 - Standard layers
   - Dense
-  - Conv, DepthwiseConv
+  - Conv2D, DepthwiseConv
   - Pooling layers
   - Output layers, e.g., softmax
   - Recurrent layers? (TBD)
